@@ -39,6 +39,9 @@ const main = async () => {
         const body = await getBody();
         const { email, password } = body;
 
+         console.error(`[DEBUG] Connecting to DB at: ${dbConfig.host}:${dbConfig.port}`);
+        console.error(`[DEBUG] User: ${dbConfig.user}`);
+
         // 1. Basic Validation
         if (!email || !password) {
             return sendResponse('error', 'Email and password required');
