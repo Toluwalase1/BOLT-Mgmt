@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const formDiv = document.getElementById('vehicle-form');
 
         try {
-            const res = await fetch(`http://localhost:8000/cgi-script/cgi-bin/manage_vehicle.js?driver_id=${driver.id}`);
+            const res = await fetch(`https://bolt-mgmt.onrender.com/cgi-script/cgi-bin/manage_vehicle.js?driver_id=${driver.id}`);
             const result = await res.json();
 
             if (result.status === 'success') {
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-            const res = await fetch('http://localhost:8000/cgi-script/cgi-bin/manage_vehicle.js', {
+            const res = await fetch('https://bolt-mgmt.onrender.com/cgi-script/cgi-bin/manage_vehicle.js', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const tripsDisplay = document.getElementById('total-trips');
 
         try {
-            const res = await fetch(`http://localhost:8000/cgi-script/cgi-bin/get_driver_history.js?driver_id=${driver.id}`);
+            const res = await fetch(`https://bolt-mgmt.onrender.com/cgi-script/cgi-bin/get_driver_history.js?driver_id=${driver.id}`);
             const result = await res.json();
 
             if (result.status === 'success' && result.data.length > 0) {
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadRequests = async () => {
         const tbody = document.getElementById('requests-body');
         try {
-            const res = await fetch('http://localhost:8000/cgi-script/cgi-bin/get_available_rides.js');
+            const res = await fetch('https://bolt-mgmt.onrender.com/cgi-script/cgi-bin/get_available_rides.js');
             const result = await res.json();
 
             if (result.status === 'success' && result.data.length > 0) {
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.acceptRide = async (rideId) => {
         if (!confirm("Accept this ride?")) return;
         try {
-            const res = await fetch('http://localhost:8000/cgi-script/cgi-bin/accept_ride.js', {
+            const res = await fetch('https://bolt-mgmt.onrender.com/cgi-script/cgi-bin/accept_ride.js', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ ride_id: rideId, driver_id: driver.id })

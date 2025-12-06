@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('📡 Asking Backend to check File Cabinets...');
             
             // --- Send to Node.js Backend ---
-            const res = await fetch('http://localhost:8000/cgi-script/cgi-bin/login.js', {
+            const res = await fetch('https://bolt-mgmt.onrender.com/cgi-script/cgi-bin/login.js', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password })
@@ -69,11 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     let target = '';
                     
                     if (user.type === 'rider') {
-                        target = 'http://localhost:8000/frontend/customer/customerhome.html';
+                        target = 'https://bolt-mgmt.onrender.com/frontend/customer/customerhome.html';
                     } else if (user.type === 'driver') {
-                        target = 'http://localhost:8000/frontend/driver/driver-dashboard.html';
+                        target = 'https://bolt-mgmt.onrender.com/frontend/driver/driver-dashboard.html';
                     } else if (user.type === 'admin') {
-                        target = 'http://localhost:8000/frontend/admin/admindashboard.html'; // Admin Path
+                        target = 'https://bolt-mgmt.onrender.com/frontend/admin/admindashboard.html'; // Admin Path
                     } else {
                         alert('⚠️ Account type unknown. Contact support.');
                         resetButton(submitButton, originalText);

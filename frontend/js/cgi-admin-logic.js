@@ -32,7 +32,7 @@ function showSection(id) {
 // --- 3. LOAD DATA ---
 async function loadStats() {
     try {
-        const res = await fetch('http://localhost:8000/cgi-script/cgi-bin/admin_actions.js?action=stats');
+        const res = await fetch('https://bolt-mgmt.onrender.com/cgi-script/cgi-bin/admin_actions.js?action=stats');
         const data = await res.json();
         if (data.status === 'success') {
             document.getElementById('count-drivers').textContent = data.drivers;
@@ -47,7 +47,7 @@ async function loadDrivers() {
     const tbody = document.getElementById('drivers-table');
     tbody.innerHTML = '<tr><td colspan="6">Loading...</td></tr>';
     try {
-        const res = await fetch('http://localhost:8000/cgi-script/cgi-bin/admin_actions.js?action=drivers');
+        const res = await fetch('https://bolt-mgmt.onrender.com/cgi-script/cgi-bin/admin_actions.js?action=drivers');
         const result = await res.json();
         
         if (result.status === 'success' && result.data.length > 0) {
@@ -80,7 +80,7 @@ async function loadRiders() {
     const tbody = document.getElementById('riders-table');
     tbody.innerHTML = '<tr><td colspan="5">Loading...</td></tr>';
     try {
-        const res = await fetch('http://localhost:8000/cgi-script/cgi-bin/admin_actions.js?action=riders');
+        const res = await fetch('https://bolt-mgmt.onrender.com/cgi-script/cgi-bin/admin_actions.js?action=riders');
         const result = await res.json();
         
         if (result.status === 'success' && result.data.length > 0) {
@@ -106,7 +106,7 @@ async function deleteUser(type, id) {
     if(!confirm(`Are you sure you want to permanently delete this ${type}?`)) return;
 
     try {
-        const res = await fetch('http://localhost:8000/cgi-script/cgi-bin/admin_actions.js', {
+        const res = await fetch('https://bolt-mgmt.onrender.com/cgi-script/cgi-bin/admin_actions.js', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ action: `delete_${type}`, id: id })

@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // --- CHANGE 1: Updated to point to .js file ---
-            const targetUrl = 'http://localhost:8000/cgi-script/cgi-bin/register.js';
+            const targetUrl = 'https://bolt-mgmt.onrender.com/cgi-script/cgi-bin/register.js';
             console.log(`Fetching from: ${targetUrl}`);
             
             const res = await fetch(targetUrl, {

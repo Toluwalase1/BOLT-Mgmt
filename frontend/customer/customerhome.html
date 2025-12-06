@@ -152,7 +152,7 @@
         const dropoffSelect = document.getElementById('dropoff');
 
         try {
-            const res = await fetch('http://localhost:8000/cgi-script/cgi-bin/book_ride.js');
+            const res = await fetch('https://bolt-mgmt.onrender.com/cgi-script/cgi-bin/book_ride.js');
             const data = await res.json();
             
             if(data.status === 'success') {
@@ -169,7 +169,7 @@
             const tbody = document.getElementById('ride-history-body');
             try {
                 // Fetching from the new endpoint
-                const res = await fetch(`http://localhost:8000/cgi-script/cgi-bin/get_rides.js?user_id=${userSession.id}`);
+                const res = await fetch(`https://bolt-mgmt.onrender.com/cgi-script/cgi-bin/get_rides.js?user_id=${userSession.id}`);
                 const result = await res.json();
 
                 if(result.status === 'success' && result.data.length > 0) {
@@ -210,7 +210,7 @@
             };
 
             try {
-                const res = await fetch('http://localhost:8000/cgi-script/cgi-bin/book_ride.js', {
+                const res = await fetch('https://bolt-mgmt.onrender.com/cgi-script/cgi-bin/book_ride.js', {
                     method: 'POST',
                     body: JSON.stringify(payload)
                 });
