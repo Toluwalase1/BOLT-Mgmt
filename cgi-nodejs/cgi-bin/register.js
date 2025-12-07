@@ -84,16 +84,30 @@ const bcrypt = require('bcryptjs');
 // --- 1. INTERNAL HELPERS (Formerly in utils) ---
 
 // Helper: Database Config (Living directly inside the file)
+// const dbConfig = {
+//     host: process.env.DB_HOST || 'localhost',
+//     user: process.env.DB_USER || 'root',
+//     password: process.env.DB_PASSWORD,
+//     database: process.env.DB_NAME || 'main_db',
+//     waitForConnections: true,
+//     connectionLimit: 1, // Keep it low for CGI
+//     queueLimit: 0
+// };
+
 const dbConfig = {
     host: process.env.DB_HOST || 'localhost',
     user: process.env.DB_USER || 'root',
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME || 'main_db',
+    // --- CRITICAL FIXES ---
+    database: 'main_db', // Force correct database name
+    port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 26897, // Force correct port
+    ssl: isProduction ? { rejectUnauthorized: false } : undefined, // Add SSL for Cloud
+    // ----------------------
     waitForConnections: true,
-    connectionLimit: 1, // Keep it low for CGI
-    queueLimit: 0
+    connectionLimit: 1,
+    queueLimit: 0,
+    connectTimeout: 20000
 };
-
 // Helper: Parse JSON Body from STDIN
 const getBody = async () => {
     return new Promise((resolve) => {
