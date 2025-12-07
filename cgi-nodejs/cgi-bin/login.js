@@ -144,7 +144,9 @@ const dbConfig = {
     user: process.env.DB_USER || 'root',
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME || 'main_db',
-    port: process.env.DB_PORT || 3306,
+    // --- CRITICAL FIX: Force the Aiven port if ENV is missing/wrong ---
+    port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 26897, 
+    // ------------------------------------------------------------------
     // Only use SSL in production (Aiven), otherwise it might break localhost
     ssl: isProduction ? { rejectUnauthorized: false } : undefined,
     waitForConnections: true,
