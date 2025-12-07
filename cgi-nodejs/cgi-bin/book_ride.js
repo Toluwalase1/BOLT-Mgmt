@@ -1,5 +1,6 @@
 require('dotenv').config({ path: '../../.env' }); 
-const mysql = require('mysql2/promise');
+// const mysql = require('mysql2/promise');
+const { getConnection } = require('./utils/db')
 const { calculateFare, LOCATIONS } = require('./pricing');
 
 // --- HELPERS ---
@@ -44,16 +45,16 @@ const main = async () => {
     }
 
     // B. Save Order to Database
-    const dbConfig = {
-        host: process.env.DB_HOST || 'localhost',
-        user: process.env.DB_USER || 'root',
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME || 'main_db'
-    };
+    // const dbConfig = {
+    //     host: process.env.DB_HOST || 'localhost',
+    //     user: process.env.DB_USER || 'root',
+    //     password: process.env.DB_PASSWORD,
+    //     database: process.env.DB_NAME || 'main_db'
+    // };
 
     let connection;
     try {
-        connection = await mysql.createConnection(dbConfig);
+        connection = await getConnection();
         
         const query = `
             INSERT INTO rides 

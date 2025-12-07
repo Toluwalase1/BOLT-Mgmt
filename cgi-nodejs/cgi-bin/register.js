@@ -82,18 +82,7 @@ const mysql = require('mysql2/promise');
 const bcrypt = require('bcryptjs');
 
 const isProduction = process.env.DB_HOST && process.env.DB_HOST.includes('aivencloud');
-// --- 1. INTERNAL HELPERS (Formerly in utils) ---
 
-// Helper: Database Config (Living directly inside the file)
-// const dbConfig = {
-//     host: process.env.DB_HOST || 'localhost',
-//     user: process.env.DB_USER || 'root',
-//     password: process.env.DB_PASSWORD,
-//     database: process.env.DB_NAME || 'main_db',
-//     waitForConnections: true,
-//     connectionLimit: 1, // Keep it low for CGI
-//     queueLimit: 0
-// };
 
 const dbConfig = {
     host: process.env.DB_HOST || 'localhost',

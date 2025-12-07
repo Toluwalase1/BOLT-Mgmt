@@ -1,5 +1,7 @@
 require('dotenv').config({ path: '../../.env' });
-const mysql = require('mysql2/promise');
+// const mysql = require('mysql2/promise');
+const { getConnection } = require('./utils/db')
+
 
 const getBody = async () => {
     return new Promise((resolve) => {
@@ -27,16 +29,10 @@ const main = async () => {
         return sendResponse('error', 'Missing ride or driver details');
     }
 
-    const dbConfig = {
-        host: process.env.DB_HOST || 'localhost',
-        user: process.env.DB_USER || 'root',
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME || 'main_db'
-    };
-
+   
     let connection;
     try {
-        connection = await mysql.createConnection(dbConfig);
+        connection = await getConnection();
         
         // 1. Check if ride is still available (Concurrency check)
         const [check] = await connection.execute(
