@@ -239,7 +239,9 @@ const main = async () => {
         return sendResponse('error', 'Invalid email or password');
 
     } catch (error) {
-        // Send generic error to frontend, keep details in logs
+        // --- ADDED LOGGING HERE ---
+        console.error("🔥 Query/Logic Error:", error);
+        // --------------------------
         sendResponse('error', 'Internal Server Error');
     } finally {
         if (connection) await connection.end();
